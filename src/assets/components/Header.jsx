@@ -14,7 +14,6 @@ const Header = () => {
           alt=""
         />
       </nav>
-      <div className="border-b-2 border-gray-400"></div>
     </div>
   );
 };
