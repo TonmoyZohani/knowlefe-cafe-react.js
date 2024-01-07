@@ -4,33 +4,40 @@ import Questions from "./assets/components/Questions";
 import DataFetch from "./assets/components/DataFetch";
 import GetPosts from "./assets/components/GetPosts";
 import Father from "./assets/components/Father";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const RingContext = createContext();
+export const MoneyContext = createContext();
 
 function App() {
+  const [money, setMoney] = useState("Taka");
+
+  console.log(money); // This will also change
+
   return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <MoneyContext.Provider value={{ money, setMoney }}>
       <div
         style={{
-          border: "1px solid red",
-          width: "20%",
-          padding: "10px",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <span>Grand Father</span>
-        <RingContext.Provider value="Gold">
-          <Father />
-        </RingContext.Provider>
+        <div
+          style={{
+            border: "1px solid red",
+            width: "20%",
+            padding: "10px",
+          }}
+        >
+          <span>Grand Father</span>
+          <RingContext.Provider value="Gold">
+            <Father />
+          </RingContext.Provider>
+        </div>
       </div>
-    </div>
+    </MoneyContext.Provider>
   );
 }
 
