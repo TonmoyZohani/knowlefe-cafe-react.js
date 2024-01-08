@@ -7,7 +7,12 @@ const reducer = (state, action) => {
     case "inc":
       return state + action.payLoad;
     case "dec":
+      if (state <= 0) {
+        return 0;
+      }
       return state + action.payLoad;
+    case "reset":
+      return 0;
   }
 };
 
@@ -22,12 +27,16 @@ const Counter = () => {
     dispatch({ type: "dec", payLoad: -1 });
   };
 
+  const handleReset = () => {
+    dispatch({ type: "reset", payLoad: 0 });
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <p>{state}</p>
       <button onClick={handleIncrement}>Increment</button>
       <button onClick={handleDecrement}>Decrement</button>
-      <button>Reset</button>
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
 };
