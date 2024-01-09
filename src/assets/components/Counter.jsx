@@ -13,6 +13,8 @@ const reducer = (state, action) => {
       return { ...state, count: state.count - 1 };
     case "reset":
       return { ...state, count: 0 };
+    case "setType":
+      return { ...state, step: action.payload || 0 };
   }
 };
 
@@ -38,6 +40,12 @@ const Counter = () => {
     dispatch({ type: "reset" });
   };
 
+  const definiteState = (e) => {
+    console.log(e.target.value);
+
+    dispatch({ type: "setType", payload: e.target.value });
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <p>Count:{count}</p>
@@ -45,6 +53,12 @@ const Counter = () => {
       <button onClick={handleIncrement}>Increment</button>
       <button onClick={handleDecrement}>Decrement</button>
       <button onClick={handleReset}>Reset</button>
+      Text
+      <input
+        onChange={(e) => definiteState(e)}
+        type="number"
+        style={{ border: "1px solid red" }}
+      />
     </div>
   );
 };
