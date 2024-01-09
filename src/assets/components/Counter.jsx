@@ -1,39 +1,47 @@
 import React, { useReducer } from "react";
 
 const reducer = (state, action) => {
-  console.log(state, action.payLoad);
+  console.log(state, action);
 
   switch (action.type) {
     case "inc":
-      return state + action.payLoad;
+      return { ...state, count: state.count + 1 };
     case "dec":
-      if (state <= 0) {
-        return 0;
+      if (state.count <= 0) {
+        return { ...state, count: 0 };
       }
-      return state + action.payLoad;
+      return { ...state, count: state.count - 1 };
     case "reset":
-      return 0;
+      return { ...state, count: 0 };
   }
 };
 
 const Counter = () => {
-  const [state, dispatch] = useReducer(reducer, 0);
+  const initialState = {
+    count: 0,
+    step: 1,
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const { count, step } = state;
 
   const handleIncrement = () => {
-    dispatch({ type: "inc", payLoad: 1 });
+    dispatch({ type: "inc" });
   };
 
   const handleDecrement = () => {
-    dispatch({ type: "dec", payLoad: -1 });
+    dispatch({ type: "dec" });
   };
 
   const handleReset = () => {
-    dispatch({ type: "reset", payLoad: 0 });
+    dispatch({ type: "reset" });
   };
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <p>{state}</p>
+      <p>Count:{count}</p>
+      <p>Step:{step}</p>
       <button onClick={handleIncrement}>Increment</button>
       <button onClick={handleDecrement}>Decrement</button>
       <button onClick={handleReset}>Reset</button>

@@ -12,8 +12,7 @@ export const MoneyContext = createContext();
 
 function App() {
   const [money, setMoney] = useState("Taka");
-
-  console.log(money); // This will also change
+   // This will also change
 
   return (
     // <MoneyContext.Provider value={{ money, setMoney }}>
