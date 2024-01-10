@@ -35,6 +35,31 @@ function PostData() {
   //     }
   //   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(postData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Post request successful:", data);
+    } catch (error) {
+      console.error("Error making POST request:", error);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
