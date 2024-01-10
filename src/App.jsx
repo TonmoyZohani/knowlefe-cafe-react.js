@@ -6,13 +6,14 @@ import GetPosts from "./assets/components/GetPosts";
 import Father from "./assets/components/Father";
 import Counter from "./assets/components/Counter";
 import { createContext, useState } from "react";
+import PostData from "./assets/components/PostData";
 
 export const RingContext = createContext();
 export const MoneyContext = createContext();
 
 function App() {
   const [money, setMoney] = useState("Taka");
-   // This will also change
+  // This will also change
 
   return (
     // <MoneyContext.Provider value={{ money, setMoney }}>
@@ -38,7 +39,8 @@ function App() {
     //     </div>
     //   </div>
     // </MoneyContext.Provider>
-    <Counter />
+    //<Counter />
+    <PostData />
   );
 }
 
